@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml" lang="id">
+<head>    
+  <meta charset="UTF-8">    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+  <title>SURGALOTRE — Jamin WEDEH!</title>    
+  <style>
+    header { display: none !important; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .header-burger { display: none !important; }
+    body { background: #0d0000; overflow-x: hidden; }
+    
+    /* Paksa Kontainer Menutup Seluruh Layar (Full Screen) */
+    #popup-TODO { 
+      position: fixed; 
+      inset: 0 !important; 
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important; 
+      height: 100vh !important; 
+      background: linear-gradient(135deg, #0d0000 0%, #260000 50%, #400000 100%) !important; 
+      z-index: 999999 !important; 
+      backdrop-filter: blur(12px); 
+      -webkit-backdrop-filter: blur(12px);
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      padding: 20px; 
+      overflow-y: auto !important; 
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px) scale(.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes glowPulse {
+      0% { filter: drop-shadow(0 0 6px #ff0000); }
+      50% { filter: drop-shadow(0 0 18px #990000); }
+      100% { filter: drop-shadow(0 0 6px #ff0000); }
+    }
+
+    /* Card Box Utama di PC */
+    .lusa-card { 
+      width: 100%; 
+      max-width: 440px; /* Disesuaikan agar proporsional di PC & Mobile */
+      background: #050505; 
+      border: 2px solid #800000; 
+      border-radius: 24px; 
+      padding: 30px; 
+      position: relative; 
+      overflow: hidden; 
+      animation: slideUp .7s cubic-bezier(.16,1,.3,1) forwards; 
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    }
+    .lusa-card:before { 
+      content: ""; 
+      position: absolute; 
+      inset: 0; 
+      background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(128, 0, 0, 0.04) 20px, rgba(128, 0, 0, 0.04) 40px); 
+      pointer-events: none; 
+    }
+
+    /* Pengaturan Banner Naga Surgalotre */
+    .lusa-card img { 
+      width: 100%; 
+      height: auto; 
+      object-fit: contain; 
+      border-radius: 18px; 
+      margin-bottom: 25px; 
+      border: 2px solid #990000; 
+      position: relative; 
+      z-index: 2; 
+      transition: .4s; 
+      animation: glowPulse 3s infinite; 
+      display: block;
+    }
+    .lusa-card img:hover { 
+      transform: scale(1.01); 
+      border-color: #ff0000; 
+    }
+
+    /* Tombol Navigasi Kelompok */
+    .btn-row { 
+      display: flex; 
+      gap: 15px; 
+      margin-bottom: 30px; 
+      position: relative; 
+      z-index: 3; 
+    }
+    .btn-row a { 
+      flex: 1; 
+      height: 60px; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      font-size: 16px; 
+      font-weight: 900; 
+      border-radius: 14px; 
+      text-decoration: none; 
+      font-family: Arial, Helvetica, sans-serif; 
+      position: relative; 
+      overflow: hidden; 
+      text-transform: uppercase; 
+      letter-spacing: 1px; 
+      transition: .3s; 
+    }
+
+    .btn-daftar { 
+      background: linear-gradient(135deg, #660000, #ff0000, #990000); 
+      background-size: 300% 300%; 
+      color: #fff; 
+      border: 2px solid #cc0000; 
+      box-shadow: 0 0 20px rgba(204, 0, 0, 0.5); 
+      animation: heartbeat 1.5s ease-in-out infinite, gradientShift 3s ease infinite; 
+    }
+    .btn-login { 
+      background: #000; 
+      color: #ff3333; 
+      border: 2px solid #990000; 
+      box-shadow: 0 0 15px rgba(153, 0, 0, 0.3); 
+    }
+
+    @keyframes heartbeat { 
+      0% { transform: scale(1); } 
+      14% { transform: scale(1.03); } 
+      28% { transform: scale(1); } 
+      42% { transform: scale(1.01); } 
+      70% { transform: scale(1); } 
+    }
+    @keyframes gradientShift { 
+      0% { background-position: 0% 50%; } 
+      50% { background-position: 100% 50%; } 
+      100% { background-position: 0% 50%; } 
+    }
+    
+    .btn-row a:hover { transform: translateY(-3px); }
+    .btn-login:hover { background: #ff0000; color: #000; border-color: #fff; }
+
+    /* Judul Tengah */
+    .lusa-title { 
+      color: #fff; 
+      font-size: 20px; 
+      font-weight: 800; 
+      text-align: center; 
+      margin-bottom: 20px; 
+      position: relative; 
+      z-index: 3; 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      letter-spacing: 1px; 
+    }
+
+    /* Tabel Data */
+    .info-box { 
+      background: rgba(0,0,0,.8); 
+      border-radius: 16px; 
+      border: 2px solid #990000; 
+      margin-bottom: 25px; 
+      position: relative; 
+      z-index: 3; 
+      overflow: hidden; 
+    }
+    .info-row { display: flex; border-bottom: 1px solid rgba(255, 0, 0, 0.15); padding: 15px 12px; }
+    .info-row:last-child { border-bottom: none; }
+    .info-label { width: 40%; color: #ff3333; font-weight: 800; font-size: 15px; text-transform: uppercase; }
+    .info-value { width: 60%; color: #fff; font-weight: 600; font-size: 15px; }
+    
+    .footer { text-align: center; color: #666; font-size: 12px; font-family: Arial, sans-serif; position: relative; z-index: 3; padding-top: 10px; }
+    .footer span { color: #ff3333; font-weight: 800; }
+
+    /* Pengondisian Khusus Device Mobile/HP */
+    @media (max-width: 600px) {
+      #popup-TODO { padding: 0 !important; }
+      .lusa-card { height: 100vh !important; border-radius: 0 !important; border: none !important; padding: 20px 15px !important; overflow-y: auto !important; }
+    }
+  </style>
+</head>
+<body> 
+
+    <div id="popup-TODO">        
+      
+      <div class="lusa-card">            
+        <a href="https://ingat.cc/products" target="_blank" rel="nofollow noopener noreferrer" style="display:block;">                
+          <img src="https://imgstudio.cc/images/2026/04/10/photo_2025-10-26_11-20-14.jpg" alt="surgalotre banner">            
+        </a>            
+        
+        <p style="color: transparent; font-size: 1px; margin: 0; line-height: 0; opacity: 0;">SERVER THAILAND Terpercaya Asli Gacor</p>
+
+        <div class="btn-row">                
+          <a class="btn-daftar" href="https://ingat.cc/products" target="_blank" rel="nofollow noopener noreferrer">DAFTAR AKUN VVIP</a>                
+          <a class="btn-login" href="https://ingat.cc/products" target="_blank" rel="nofollow noopener noreferrer">LOGIN AKUN VVIP</a>            
+        </div>
+        
+        <div class="lusa-title">INFORMASI PENTING SURGALOTRE</div>
+        
+        <div class="info-box">                
+          <div class="info-row">                    
+            <div class="info-label">Nama Situs :</div>                    
+            <div class="info-value"><strong>SURGALOTRE</strong></div>                
+          </div>                
+          <div class="info-row">                    
+            <div class="info-label">Payment :</div>                    
+            <div class="info-value">⚡ E-Wallet QRIS, Bank Lokal</div>                
+          </div>                
+          <div class="info-row">                    
+            <div class="info-label">DEPO :</div>                    
+            <div class="info-value">💸 Rp 5.000</div>                
+          </div>                
+          <div class="info-row">                    
+            <div class="info-label">WEHDE :</div>                    
+            <div class="info-value">💵 Rp 25.000</div>                
+          </div>            
+        </div>            
+        
+        <div class="footer">                
+          © 2026 <span>SURGALOTRE</span>. All Rights Reserved.            
+        </div>        
+      </div>
+
+    </div> </body>
+</html>
